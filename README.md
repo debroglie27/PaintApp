@@ -25,7 +25,7 @@ The label beside the button lets us know what color Canvas background is current
 
 ---
 ### Some Beautiful Paintings By Me:
-![image1](https://raw.githubusercontent.com/debroglie27/PaintApp/main/Images/image1.png)
+![Scenery](https://raw.githubusercontent.com/debroglie27/PaintApp/main/Images/image1.png)
 
 ![image2](https://raw.githubusercontent.com/debroglie27/PaintApp/main/Images/image2.png)
 
