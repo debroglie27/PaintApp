@@ -9,7 +9,10 @@ This is how the App looks.
 
 ---
 ### About the App:
-* Paint using the Mouse by pressing the `MouseButton-1` and dragging through the canvas.
+* **Paint** using the `Left Mouse Button` and dragging through the canvas.
+* **Erase** using the `Right Mouse Button` and dragging through the canvas.  
+
+
 * Change the brush size by interacting with the slider (Default value: 25).
 * Change the brush type by selecting one of the options.  
 

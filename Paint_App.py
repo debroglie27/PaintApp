@@ -86,29 +86,53 @@ class PaintApp:
         self.save_png_button = Button(self.program_options_frame, text="SAVE Image", command=self.save_image)
         self.save_png_button.pack()
 
-        # Binding the Mouse Button to draw
+        # Binding the Left Mouse Button to draw
         self.my_canvas.bind("<B1-Motion>", self.paint)
         self.my_canvas.bind("<Button-1>", self.paint)
 
-    # Function which does the painting
+        # Binding the Right Mouse Button to erase
+        self.my_canvas.bind("<B3-Motion>", self.erase)
+        self.my_canvas.bind("<Button-3>", self.erase)
+
+    # Function to Paint On Canvas
     def paint(self, event):
         color = self.brush_color
-        size = self.brush_size // 2
+        offset = self.brush_size // 2
 
+        # Drawing Circles
         if self.brush_type.get() == "Round":
-            x1, y1 = event.x - size, event.y - size
-            x2, y2 = event.x + size, event.y + size
+            x1, y1 = event.x - offset, event.y - offset
+            x2, y2 = event.x + offset, event.y + offset
             self.my_canvas.create_oval(x1, y1, x2, y2, fill=color, outline=color)
+        # Drawing Slashes
         elif self.brush_type.get() == "Slash":
-            x1, y1 = event.x - size, event.y + size
-            x2, y2 = event.x + size, event.y - size
+            x1, y1 = event.x - offset, event.y + offset
+            x2, y2 = event.x + offset, event.y - offset
             self.my_canvas.create_line(x1, y1, x2, y2, fill=color, width=4)
+        # Drawing Diamonds
         elif self.brush_type.get() == "Diamond":
-            x1, y1 = event.x, event.y + size
-            x2, y2 = event.x + size, event.y
-            x3, y3 = event.x, event.y - size
-            x4, y4 = event.x - size, event.y
+            x1, y1 = event.x, event.y + offset
+            x2, y2 = event.x + offset, event.y
+            x3, y3 = event.x, event.y - offset
+            x4, y4 = event.x - offset, event.y
             self.my_canvas.create_polygon(x1, y1, x2, y2, x3, y3, x4, y4, fill=color, outline=color)
+
+    # Function to Erase stuff drawn on Canvas
+    def erase(self, event):
+        offset = self.brush_size // 2 + 5
+
+        # Rectangle coordinates
+        x1 = event.x - offset
+        y1 = event.y - offset
+        x2 = event.x + offset
+        y2 = event.y + offset
+
+        # All the canvas object ids enclosed within rectangle
+        objects_ids = self.my_canvas.find_enclosed(x1, y1, x2, y2)
+
+        # Deleting the obtained object ids
+        for ids in objects_ids:
+            self.my_canvas.delete(ids)
 
     # For changing the brush size
     def change_brush_size(self, size):
