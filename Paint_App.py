@@ -155,7 +155,10 @@ if __name__ == "__main__":
     BRUSH_COLOR = 'red'
     BRUSH_SIZE = 25
 
+    # Creating the Window
     root = Tk()
+
+    # Starting the App
     PaintApp(root, CANVAS_COLOR, BRUSH_COLOR, BRUSH_SIZE)
 
     mainloop()
